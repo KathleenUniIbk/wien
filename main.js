@@ -19,7 +19,10 @@ L.control.layers({
     attribution: 'Hintergrundkarte: <a href="https://www.basemap.at">basemap.at</a>'
 }).addTo(map)
 },{
-
+"Sehenswürdigkeiten": L.featureGroup(),
+"Vienna Sightseeing": L.featureGroup(),
+"Vienna Sightseeing Haltestellen": L.featureGroup(),
+"Fußgängerzonen": L.featureGroup(),
 }).addTo(map);
 
 //Maßstab
