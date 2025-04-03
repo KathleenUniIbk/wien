@@ -17,6 +17,12 @@ L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{
     attribution: 'Hintergrundkarte: <a href="https://www.basemap.at">basemap.at</a>'
 }).addTo(map);
 
+//Layercontrol
+L.control.layers({
+
+},{
+
+}).addTo(map);
 
 //Maßstab
 L.control.scale({
@@ -36,7 +42,6 @@ async function loadSights(url) {
     }).addTo(map);
 }
 
-
 //Sightseeing load lines
 async function loadLines(url) {
     console.log(url);
@@ -50,7 +55,6 @@ async function loadLines(url) {
     }).addTo(map);
 }
 
-
 //Sightseeing load Stops
 async function loadStops(url) {
     console.log(url);
@@ -63,7 +67,6 @@ async function loadStops(url) {
         attribution: "Datenquelle: <a href='https://data.wien.gv.at' >Stadt Wien</a>"
     }).addTo(map);
 }
-
 
 //Sightseeing load Zones
 async function loadZones(url) {
