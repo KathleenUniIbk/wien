@@ -12,7 +12,7 @@ let stephansdom = {
 let map = L.map("map").setView([stephansdom.lat, stephansdom.lng], stephansdom.zoom);
 
 //Overlays definieren
-let Overlays= {
+let overlays= {
     sights: L.featureGroup().addTo(map),
 lines: L.featureGroup().addTo(map),
 stops: L.featureGroup().addTo(map),
@@ -26,10 +26,10 @@ L.control.layers({
     attribution: 'Hintergrundkarte: <a href="https://www.basemap.at">basemap.at</a>'
 }).addTo(map)
 },{
-"Sehenswürdigkeiten": L.featureGroup().addTo(map),
-"Vienna Sightseeing": L.featureGroup().addTo(map),
-"Vienna Sightseeing Haltestellen": L.featureGroup().addTo(map),
-"Fußgängerzonen": L.featureGroup().addTo(map),
+"Sehenswürdigkeiten": overlays.sights,
+"Vienna Sightseeing": overlays.lines,
+"Vienna Sightseeing Haltestellen": overlays.stops,
+"Fußgängerzonen": overlays.zones,
 }).addTo(map);
 
 //Maßstab
