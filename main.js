@@ -61,7 +61,10 @@ async function loadSights(url) {
             });
         },
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("Hallo");
+            console.log(feature.properties);
+            layer.bindPopup(`
+                <img src ="${feature.properties.THUMBNAIL}" alt="*">
+                `);
         }
     }).addTo(overlays.sights);
 }
