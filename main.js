@@ -52,14 +52,14 @@ async function loadSights(url) {
     //console.log(jsondata);
     L.geoJSON(jsondata, {
         attribution: "Datenquelle: <a href='https://data.wien.gv.at' >Stadt Wien</a>",
-        pointToLayer: function(feature, latlng) {
+        pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {
                 icon: L.icon({
                     iconUrl: "icons/photo.png",
-                    iconAnchor: [16,37],
+                    iconAnchor: [16, 37],
                 })
-        });
-    }
+            });
+        }
     }).addTo(overlays.sights);
 }
 
@@ -77,24 +77,24 @@ async function loadLines(url) {
             //console.log(feature.properties.LINE_NAME);
             let lineColor;
 
-            if(feature.properties.LINE_NAME == "Yellow Line") {
-               lineColor = "#FFDC00";
-            } else if (feature.properties.LINE_NAME == "Blue Line"){
+            if (feature.properties.LINE_NAME == "Yellow Line") {
+                lineColor = "#FFDC00";
+            } else if (feature.properties.LINE_NAME == "Blue Line") {
                 lineColor = "#0074D9";
-            }else if (feature.properties.LINE_NAME == "Red Line"){
+            } else if (feature.properties.LINE_NAME == "Red Line") {
                 lineColor = "#FF4136";
-            }else if (feature.properties.LINE_NAME == "Green Line"){
+            } else if (feature.properties.LINE_NAME == "Green Line") {
                 lineColor = "#2ECC40";
-            }else if (feature.properties.LINE_NAME == "Grey Line"){
+            } else if (feature.properties.LINE_NAME == "Grey Line") {
                 lineColor = "#AAAAAA";
-            }else if (feature.properties.LINE_NAME == "Orange Line"){
+            } else if (feature.properties.LINE_NAME == "Orange Line") {
                 lineColor = "#FF851B";
             } else {
                 lineColor = "#111111"
             }
             return {
-           color: lineColor          
-        }
+                color: lineColor
+            }
         }
     }).addTo(overlays.lines);
 }
@@ -126,10 +126,10 @@ async function loadZones(url) {
             console.log(feature);
             return {
                 color: "#F012BE",
-                 weight: 1,
+                weight: 1,
                 opacity: 0.4,
-            fillOpacity: 0.1,       
-        }
+                fillOpacity: 0.1,
+            }
         }
     }).addTo(overlays.zones);
 }
@@ -148,8 +148,8 @@ async function loadHotels(url) {
 }
 
 //GeoJSON laden und visualisieren
-loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json")
+//loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json")
 //loadLines("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKLINIEVSLOGD&srsName=EPSG:4326&outputFormat=json")
 //loadStops("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:TOURISTIKHTSVSLOGD&srsName=EPSG:4326&outputFormat=json")
 //loadZones("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:FUSSGEHERZONEOGD&srsName=EPSG:4326&outputFormat=json")
-//loadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json")
+loadHotels("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:UNTERKUNFTOGD&srsName=EPSG:4326&outputFormat=json")
