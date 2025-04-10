@@ -111,8 +111,14 @@ async function loadStops(url) {
         attribution: "Datenquelle: <a href='https://data.wien.gv.at' >Stadt Wien</a>",
         pointToLayer: function (feature, latlng){
             console.log(feature.properties);
-        }
-        
+            
+                return L.marker(latlng, {
+                    icon: L.icon({
+                        iconUrl: `icons/bus_${feature.properties.LINE_ID}.png`,
+                        iconAnchor: [16, 37],
+                    })
+                });
+            }
     }).addTo(overlays.stops);
 }
 
@@ -157,8 +163,7 @@ async function loadHotels(url) {
                 iconName = "hotel_2stars.png";
             } else if (feature.properties.KATEGORIE_TXT == "2*") {
                 iconName = "hotel_2stars.png";
-            }
-            else if (feature.properties.KATEGORIE_TXT == "3*") {
+            } else if (feature.properties.KATEGORIE_TXT == "3*") {
                 iconName = "hotel_3stars.png";
             } else if (feature.properties.KATEGORIE_TXT == "4*") {
                 iconName = "hotel_4stars.png";
