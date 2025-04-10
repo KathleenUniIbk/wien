@@ -59,6 +59,9 @@ async function loadSights(url) {
                     iconAnchor: [16, 37],
                 })
             });
+        },
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup("Hallo");
         }
     }).addTo(overlays.sights);
 }
