@@ -110,7 +110,7 @@ async function loadLines(url) {
             }
         },
         onEachFeature: function(feature, layer) {
-            console.log(feature.properties);
+            //console.log(feature.properties);
             layer.bindPopup(`
                 <h4><i class="fa-solid fa-bus-simple"></i> ${feature.properties.LINE_NAME}</h4>
                 <line><i class="fa-regular fa-circle-stop"></i> ${feature.properties.ADRESSE}</line>
@@ -170,6 +170,14 @@ async function loadZones(url) {
                 opacity: 0.4,
                 fillOpacity: 0.1,
             }
+            },
+        onEachFeature: function(feature, layer) {
+            console.log(feature.properties);
+            layer.bindPopup(`
+                <h4> ${feature.properties.ADRESSE}</h4>
+                <time><i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM} </time>
+                <p><text><i class="fa-solid fa-circle-info"></i> ${feature.properties.AUSN_TEXT} </text></p>
+                `); 
         }
     }).addTo(overlays.zones);
 }
