@@ -172,7 +172,7 @@ async function loadZones(url) {
             }
             },
         onEachFeature: function(feature, layer) {
-            console.log(feature.properties);
+            //console.log(feature.properties);
             layer.bindPopup(`
                 <h4> ${feature.properties.ADRESSE}</h4>
                 <time><i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM} </time>
@@ -199,8 +199,6 @@ async function loadHotels(url) {
                 iconName = "hotel_1stars.png";
             } else if (feature.properties.KATEGORIE_TXT == "2*") {
                 iconName = "hotel_2stars.png";
-            } else if (feature.properties.KATEGORIE_TXT == "2*") {
-                iconName = "hotel_2stars.png";
             } else if (feature.properties.KATEGORIE_TXT == "3*") {
                 iconName = "hotel_3stars.png";
             } else if (feature.properties.KATEGORIE_TXT == "4*") {
@@ -217,9 +215,25 @@ async function loadHotels(url) {
                     iconAnchor: [16, 37],
                 })
             });
+        },
+
+        onEachFeature: function (feature, layer) {
+            console.log(feature.properties); 
+            layer.bindPopup(`
+                <h3>${feature.properties.BETRIEB}</h3>
+                <h4>Hotel ${feature.properties.KATEGORIE_TXT}</h4>
+                <hr>
+                <p>Adr.: ${feature.properties.ADRESSE}</p>
+                <p>Tel.: <a href="tel:${feature.properties.KONTAKT_TEL}">${feature.properties.KONTAKT_TEL}</a></p>
+                <p><a href="mailto:${feature.properties.KONTAKT_EMAIL}">${feature.properties.KONTAKT_EMAIL}</a></p>
+                <p><a href="${feature.properties.WEBLINK1}" target="_blank">Homepage</a></p>
+            `);
         }
+
     }).addTo(overlays.hotels);
 }
+
+
 
 //GeoJSON laden und visualisieren
 loadSights("https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SEHENSWUERDIGOGD&srsName=EPSG:4326&outputFormat=json")
