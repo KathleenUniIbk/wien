@@ -131,7 +131,14 @@ async function loadStops(url) {
                     iconAnchor: [16, 37],
                 })
             });
-        }
+        },
+        onEachFeature: function(feature, layer) {
+            //console.log(feature.properties);}
+            layer.bindPopup(`
+                <h4><i class="fa-solid fa-bus-simple"></i> ${feature.properties.LINE_NAME}</h4>
+                <station>${feature.properties.STAT_ID} ${feature.properties.STAT_NAME} </station>
+                `);
+            }
     }).addTo(overlays.stops);
 }
 
