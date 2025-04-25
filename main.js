@@ -9,7 +9,7 @@ let stephansdom = {
 };
 
 // Karte initialisieren
-let map = L.map("map",{
+let map = L.map("map", {
     maxZoom: 19
 }).setView([stephansdom.lat, stephansdom.lng], stephansdom.zoom);
 
@@ -64,7 +64,7 @@ async function loadSights(url) {
                 })
             });
         },
-        onEachFeature: function(feature, layer) {
+        onEachFeature: function (feature, layer) {
             //console.log(feature.properties);
             layer.bindPopup(`
                 <img src ="${feature.properties.THUMBNAIL}" alt="*">
@@ -109,13 +109,13 @@ async function loadLines(url) {
                 color: lineColor
             }
         },
-        onEachFeature: function(feature, layer) {
+        onEachFeature: function (feature, layer) {
             //console.log(feature.properties);
             layer.bindPopup(`
                 <h4><i class="fa-solid fa-bus-simple"></i> ${feature.properties.LINE_NAME}</h4>
-                <line><i class="fa-regular fa-circle-stop"></i> ${feature.properties.ADRESSE}</line>
-                <p><i class="fa-solid fa-arrow-down"></i> </p>
-                <line><i class="fa-regular fa-circle-stop"></i> ${feature.properties.ADRESSE}</line>
+                <div><i class="fa-regular fa-circle-stop"></i> ${feature.properties.FROM_NAME}</div>
+                <div><i class="fa-solid fa-arrow-down"></i></div>
+                <div><i class="fa-regular fa-circle-stop"></i> ${feature.properties.TO_NAME}</div>
 
             `);
         }
@@ -142,13 +142,13 @@ async function loadStops(url) {
                 })
             });
         },
-        onEachFeature: function(feature, layer) {
+        onEachFeature: function (feature, layer) {
             //console.log(feature.properties);}
             layer.bindPopup(`
                 <h4><i class="fa-solid fa-bus-simple"></i> ${feature.properties.LINE_NAME}</h4>
-                <station>${feature.properties.STAT_ID} ${feature.properties.STAT_NAME} </station>
+                <div>${feature.properties.STAT_ID} ${feature.properties.STAT_NAME} </div>
                 `);
-            }
+        }
     }).addTo(overlays.stops);
 }
 
@@ -170,14 +170,14 @@ async function loadZones(url) {
                 opacity: 0.4,
                 fillOpacity: 0.1,
             }
-            },
-        onEachFeature: function(feature, layer) {
+        },
+        onEachFeature: function (feature, layer) {
             //console.log(feature.properties);
             layer.bindPopup(`
                 <h4> ${feature.properties.ADRESSE}</h4>
-                <time><i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM} </time>
-                <p><text><i class="fa-solid fa-circle-info"></i> ${feature.properties.AUSN_TEXT} </text></p>
-                `); 
+                <div><i class="fa-regular fa-clock"></i> ${feature.properties.ZEITRAUM} </div>
+                <div><i class="fa-solid fa-circle-info"></i> ${feature.properties.AUSN_TEXT} <div>
+                `);
         }
     }).addTo(overlays.zones);
 }
@@ -218,15 +218,15 @@ async function loadHotels(url) {
         },
 
         onEachFeature: function (feature, layer) {
-            console.log(feature.properties); 
+            console.log(feature.properties);
             layer.bindPopup(`
                 <h3>${feature.properties.BETRIEB}</h3>
                 <h4>Hotel ${feature.properties.KATEGORIE_TXT}</h4>
                 <hr>
-                <p>Adr.: ${feature.properties.ADRESSE}</p>
-                <p>Tel.: <a href="tel:${feature.properties.KONTAKT_TEL}">${feature.properties.KONTAKT_TEL}</a></p>
-                <p><a href="mailto:${feature.properties.KONTAKT_EMAIL}">${feature.properties.KONTAKT_EMAIL}</a></p>
-                <p><a href="${feature.properties.WEBLINK1}" target="_blank">Homepage</a></p>
+                <div>Adr.: ${feature.properties.ADRESSE}</div>
+                <div>Tel.: <a href="tel:${feature.properties.KONTAKT_TEL}">${feature.properties.KONTAKT_TEL}</div>
+                <div href="mailto:${feature.properties.KONTAKT_EMAIL}">${feature.properties.KONTAKT_EMAIL}</div>
+                <div href="${feature.properties.WEBLINK1}" target="_blank">Homepage</div>
             `);
         }
 
